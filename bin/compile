@@ -62,7 +62,7 @@ echo "   LogLevel ERROR" >> ~/.ssh/config
 echo "-----> Installed SSH key from GIT_SSH_KEY"    
 
 # checkout the revision that's being deployed
-git fetch -q --depth 1 github.com-ete-sync -a > /dev/null
+git fetch -q --depth 1 github.com-ete-sync:ETE-REMAN/heroku-ete-sync.git -a > /dev/null
 git checkout -q ${SOURCE_VERSION:-master} > /dev/null
 echo "-----> Fetched shallow history from $GIT_REPO_URL"
 

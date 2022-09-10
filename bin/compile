@@ -67,7 +67,7 @@ git checkout -q ${SOURCE_VERSION:-master} > /dev/null
 echo "-----> Fetched shallow history from $GIT_REPO_URL"
 
 # initialize all the submodules
-git submodule set-url ./etesyncshared/ "git@github.com:ETE-REMAN/ete-sync-shared.git"
+git submodule set-url ./etesyncshared/ "git@github.com-ete-sync-shared:ETE-REMAN/ete-sync-shared.git"
 git submodule -q update --init --recursive
 echo "-----> Checked out all submodules"
 git submodule status | sed 's/^/       * /'

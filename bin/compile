@@ -8,6 +8,7 @@ GIT_REPO_URL=$(<"$ENV_DIR/GIT_REPO_URL")
 GIT_SSH_KEY=$(<"$ENV_DIR/GIT_SSH_KEY")
 ETE_SYNC_GIT_SSH_KEY=$(<"$ENV_DIR/ETE_SYNC_DEPLOY_KEY")
 ETE_SYNC_SHARED_GIT_SSH_KEY=$(<"$ENV_DIR/ETE_SYNC_SHARED_DEPLOY_KEY")
+GIT_DEPLOY_HOSTS=$(<"$ENV_DIR/GIT_DEPLOY_HOSTS")
 
 
 if [[ -z $GIT_REPO_URL ]]; then
@@ -27,6 +28,11 @@ fi
 
 if [[ -z $ETE_SYNC_SHARED_GIT_SSH_KEY ]]; then
     echo "Did you forget to set ETE_SYNC_SHARED_DEPLOY_KEY?"
+    exit 1
+fi
+
+if [[ -z $GIT_DEPLOY_HOSTS ]]; then
+    echo "Did you forget to set GIT_DEPLOY_HOSTS?"
     exit 1
 fi
 
@@ -62,20 +68,7 @@ cat ~/.ssh/ete_sync_deploy_key
 cat ~/.ssh/ete_sync_shared_deploy_key
 
 # ignore/hide ssh warnings
-echo "Host ete-sync" >> ~/.ssh/config
-echo "   Hostname github.com" >> ~/.ssh/config
-echo "   IdentityFile ~/.ssh/ete_sync_deploy_key" >> ~/.ssh/config
-#echo "   StrictHostKeyChecking no" >> ~/.ssh/config
-#echo "   UserKnownHostsFile /dev/null" >> ~/.ssh/config
-echo "   LogLevel ERROR" >> ~/.ssh/config
-echo >>  ~/.ssh/config
-echo "Host ete-sync-shared" >> ~/.ssh/config
-echo "   Hostname github.com" >> ~/.ssh/config
-echo "   IdentityFile ~/.ssh/ete_sync_shared_deploy_key" >> ~/.ssh/config
-#echo "   StrictHostKeyChecking no" >> ~/.ssh/config
-#echo "   UserKnownHostsFile /dev/null" >> ~/.ssh/config
-echo "   LogLevel ERROR" >> ~/.ssh/config
-
+cp "$ENV_DIR/GIT_DEPLOY_HOSTS" ~/.ssh/config
 chmod 400 ~/.ssh/config
 cat ~/.ssh/config
 

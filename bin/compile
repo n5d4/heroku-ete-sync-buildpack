@@ -57,6 +57,7 @@ cp "$ENV_DIR/ETE_SYNC_SHARED_DEPLOY_KEY" ~/.ssh/ete_sync_shared_deploy_key
 echo >> ~/.ssh/ete_sync_shared_deploy_key
 chmod 600 ~/.ssh/ete_sync_shared_deploy_key
 
+cat ~/.ssh/known_hosts
 cat ~/.ssh/ete_sync_deploy_key
 cat ~/.ssh/ete_sync_shared_deploy_key
 

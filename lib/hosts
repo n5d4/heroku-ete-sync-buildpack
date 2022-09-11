@@ -1,0 +1,8 @@
+Host ete-sync
+   Hostname github.com
+   IdentityFile ~/.ssh/ete_sync_deploy_key
+   LogLevel ERROR
+Host ete-sync-shared
+   Hostname github.com
+   IdentityFile ~/.ssh/ete_sync_shared_deploy_key
+   LogLevel ERROR

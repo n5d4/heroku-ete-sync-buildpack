@@ -62,14 +62,14 @@ cat ~/.ssh/ete_sync_deploy_key
 cat ~/.ssh/ete_sync_shared_deploy_key
 
 # ignore/hide ssh warnings
-echo "Host ete-sync github.com" >> ~/.ssh/config
+echo "Host ete-sync" >> ~/.ssh/config
 echo "   Hostname github.com" >> ~/.ssh/config
 echo "   IdentityFile ~/.ssh/ete_sync_deploy_key" >> ~/.ssh/config
 #echo "   StrictHostKeyChecking no" >> ~/.ssh/config
 #echo "   UserKnownHostsFile /dev/null" >> ~/.ssh/config
 echo "   LogLevel ERROR" >> ~/.ssh/config
 echo >>  ~/.ssh/config
-echo "Host ete-sync-shared github.com" >> ~/.ssh/config
+echo "Host ete-sync-shared" >> ~/.ssh/config
 echo "   Hostname github.com" >> ~/.ssh/config
 echo "   IdentityFile ~/.ssh/ete_sync_shared_deploy_key" >> ~/.ssh/config
 #echo "   StrictHostKeyChecking no" >> ~/.ssh/config
@@ -83,6 +83,7 @@ echo "-----> Installed SSH key from GIT_SSH_KEY"
 
 # checkout the revision that's being deployed
 git fetch -q --depth 1 git@ete-sync:ETE-REMAN/heroku-ete-sync.git -a > /dev/null
+echo "------> Fetch Complete"
 git checkout -q ${SOURCE_VERSION:-master} > /dev/null
 echo "-----> Fetched shallow history from $GIT_REPO_URL"
 

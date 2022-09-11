@@ -63,14 +63,14 @@ cat ~/.ssh/ete_sync_shared_deploy_key
 # ignore/hide ssh warnings
 echo "Host github.com-ete-sync" >> ~/.ssh/config
 echo "   Hostname github.com" >> ~/.ssh/config
-echo "   IdentityFile=~/.ssh/ete_sync_deploy_key" >> ~/.ssh/config
+echo "   IdentityFile ~/.ssh/ete_sync_deploy_key" >> ~/.ssh/config
 echo "   StrictHostKeyChecking no" >> ~/.ssh/config
 #echo "   UserKnownHostsFile /dev/null" >> ~/.ssh/config
 echo "   LogLevel ERROR" >> ~/.ssh/config
 echo >>  ~/.ssh/config
 echo "Host github.com-ete-sync-shared" >> ~/.ssh/config
 echo "   Hostname github.com" >> ~/.ssh/config
-echo "   IdentityFile=~/.ssh/ete_sync_shared_deploy_key" >> ~/.ssh/config
+echo "   IdentityFile ~/.ssh/ete_sync_shared_deploy_key" >> ~/.ssh/config
 echo "   StrictHostKeyChecking no" >> ~/.ssh/config
 #echo "   UserKnownHostsFile /dev/null" >> ~/.ssh/config
 echo "   LogLevel ERROR" >> ~/.ssh/config

@@ -49,7 +49,7 @@ git remote add origin "$GIT_REPO_URL"
 
 # install the ssh key
 mkdir -p ~/.ssh
-#ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2> /dev/null
+ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2> /dev/null
 cp "$ENV_DIR/ETE_SYNC_DEPLOY_KEY" ~/.ssh/ete_sync_deploy_key
 echo >> ~/.ssh/ete_sync_deploy_key
 chmod 600 ~/.ssh/ete_sync_deploy_key

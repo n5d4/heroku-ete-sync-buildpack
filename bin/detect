@@ -2,9 +2,9 @@
 
 app_dir="$1"
 
-if [ ! -f "$app_dir/.gitmodules" ]; then
+if [ ! -f "$app_dir/.gitmodules.heroku" ]; then
     exit 1
 fi
 
-echo "Git submodules"
+echo "Git heroku-specific submodules"
 exit 0

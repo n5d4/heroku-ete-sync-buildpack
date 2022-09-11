@@ -6,6 +6,9 @@ ENV_DIR="$3"
 # load required environment variables
 GIT_REPO_URL=$(<"$ENV_DIR/GIT_REPO_URL")
 GIT_SSH_KEY=$(<"$ENV_DIR/GIT_SSH_KEY")
+ETE_SYNC_GIT_SSH_KEY=$(<"$ENV_DIR/ETE_SYNC_DEPLOY_KEY")
+ETE_SYNC_SHARED_GIT_SSH_KEY=$(<"$ENV_DIR/ETE_SYNC_SHARED_DEPLOY_KEY")
+
 
 if [[ -z $GIT_REPO_URL ]]; then
     echo "Did you forget to set GIT_REPO_URL?"
@@ -14,6 +17,16 @@ fi
 
 if [[ -z $GIT_SSH_KEY ]]; then
     echo "Did you forget to set GIT_SSH_KEY?"
+    exit 1
+fi
+
+if [[ -z $ETE_SYNC_GIT_SSH_KEY ]]; then
+    echo "Did you forget to set ETE_SYNC_GIT_SSH_KEY?"
+    exit 1
+fi
+
+if [[ -z $GIT_ETE_SYNC_SHARED_GIT_SSH_KEYSSH_KEY ]]; then
+    echo "Did you forget to set GIT_ETE_SYNC_SHARED_GIT_SSH_KEYSSH_KEY?"
     exit 1
 fi
 

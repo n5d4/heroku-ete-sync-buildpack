@@ -62,20 +62,21 @@ cat ~/.ssh/ete_sync_deploy_key
 cat ~/.ssh/ete_sync_shared_deploy_key
 
 # ignore/hide ssh warnings
-echo "Host ete-sync" >> ~/.ssh/config
+echo "Host ete-sync github.com" >> ~/.ssh/config
 echo "   Hostname github.com" >> ~/.ssh/config
 echo "   IdentityFile ~/.ssh/ete_sync_deploy_key" >> ~/.ssh/config
-echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+#echo "   StrictHostKeyChecking no" >> ~/.ssh/config
 #echo "   UserKnownHostsFile /dev/null" >> ~/.ssh/config
 echo "   LogLevel ERROR" >> ~/.ssh/config
 echo >>  ~/.ssh/config
-echo "Host ete-sync-shared" >> ~/.ssh/config
+echo "Host ete-sync-shared github.com" >> ~/.ssh/config
 echo "   Hostname github.com" >> ~/.ssh/config
 echo "   IdentityFile ~/.ssh/ete_sync_shared_deploy_key" >> ~/.ssh/config
-echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+#echo "   StrictHostKeyChecking no" >> ~/.ssh/config
 #echo "   UserKnownHostsFile /dev/null" >> ~/.ssh/config
 echo "   LogLevel ERROR" >> ~/.ssh/config
 
+chmod 400 ~/.ssh/config
 cat ~/.ssh/config
 
 echo "-----> Installed SSH key from GIT_SSH_KEY"    

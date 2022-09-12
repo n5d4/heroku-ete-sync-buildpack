@@ -68,6 +68,7 @@ chmod 400 ~/.ssh/config
 
 echo "-----> Loaded Custom Hosts FIle"   
 cat ~/.ssh/config
+echo ""
 
 # checkout the revision that's being deployed
 git fetch -q --depth 1 $ETE_SYNC_GIT_URL -a > /dev/null

@@ -71,13 +71,13 @@ cat ~/.ssh/config
 echo ""
 
 # checkout the revision that's being deployed
-git fetch -q --depth 1 $ETE_SYNC_GIT_URL -a > /dev/null
-git checkout -q ${SOURCE_VERSION:-master} > /dev/null
+git fetch --depth 1 $ETE_SYNC_GIT_URL -a > /dev/null
+git checkout ${SOURCE_VERSION:-master} > /dev/null
 echo "-----> Fetched shallow history from ete-sync"
 
 mv .gitmodules.heroku .gitmodules
 
 # initialize all the submodules
-git submodule -q update --init --recursive
+git submodule update --init --recursive
 echo "-----> Checked out all submodules"
 git submodule status | sed 's/^/       * /'

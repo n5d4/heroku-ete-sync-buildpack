@@ -11,7 +11,7 @@ GIT_DEPLOY_HOSTS=$(<"$ENV_DIR/GIT_DEPLOY_HOSTS")
 
 
 if [[ -z $ETE_SYNC_GIT_URL ]]; then
-    echo "Did you forget to set ETE_SYNC_GIT_URL?"
+    echo "Did you forget to set GIT_URL_ETE_SYNC?"
     exit 1
 fi
 

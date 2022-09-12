@@ -71,6 +71,7 @@ cat ~/.ssh/config
 echo ""
 
 echo "-----> Fetching shallow history from ete-sync"
+echo ${SOURCE_VERSION:-master}
 # checkout the revision that's being deployed
 git fetch --depth 1 $ETE_SYNC_GIT_URL -a > /dev/null
 git checkout ${SOURCE_VERSION:-master} > /dev/null

@@ -4,20 +4,14 @@ APP_DIR="$1"
 ENV_DIR="$3"
 
 # load required environment variables
-GIT_REPO_URL=$(<"$ENV_DIR/GIT_REPO_URL")
-GIT_SSH_KEY=$(<"$ENV_DIR/GIT_SSH_KEY")
+ETE_SYNC_GIT_URL = $(<"$ENV_DIR/GIT_URL_ETE_SYNC")
 ETE_SYNC_GIT_SSH_KEY=$(<"$ENV_DIR/ETE_SYNC_DEPLOY_KEY")
 ETE_SYNC_SHARED_GIT_SSH_KEY=$(<"$ENV_DIR/ETE_SYNC_SHARED_DEPLOY_KEY")
 GIT_DEPLOY_HOSTS=$(<"$ENV_DIR/GIT_DEPLOY_HOSTS")
 
 
-if [[ -z $GIT_REPO_URL ]]; then
-    echo "Did you forget to set GIT_REPO_URL?"
-    exit 1
-fi
-
-if [[ -z $GIT_SSH_KEY ]]; then
-    echo "Did you forget to set GIT_SSH_KEY?"
+if [[ -z $ETE_SYNC_GIT_URL ]]; then
+    echo "Did you forget to set ETE_SYNC_GIT_URL?"
     exit 1
 fi
 
@@ -51,7 +45,7 @@ git config core.sparseCheckout true
 echo ".gitmodules" > .git/info/sparse-checkout
 
 # add the repo as a remote and fetch the repo's history
-git remote add origin "$GIT_REPO_URL"
+git remote add origin "$ETE_SYNC_GIT_URL"
 
 # install the ssh key
 mkdir -p ~/.ssh
@@ -59,13 +53,10 @@ ssh-keyscan -H github.com >> ~/.ssh/known_hosts 2> /dev/null
 cp "$ENV_DIR/ETE_SYNC_DEPLOY_KEY" ~/.ssh/ete_sync_deploy_key
 echo >> ~/.ssh/ete_sync_deploy_key
 chmod 600 ~/.ssh/ete_sync_deploy_key
+
 cp "$ENV_DIR/ETE_SYNC_SHARED_DEPLOY_KEY" ~/.ssh/ete_sync_shared_deploy_key
 echo >> ~/.ssh/ete_sync_shared_deploy_key
 chmod 600 ~/.ssh/ete_sync_shared_deploy_key
-
-cat ~/.ssh/known_hosts
-cat ~/.ssh/ete_sync_deploy_key
-cat ~/.ssh/ete_sync_shared_deploy_key
 
 # ignore/hide ssh warnings
 cp "$ENV_DIR/GIT_DEPLOY_HOSTS" ~/.ssh/config
@@ -75,15 +66,15 @@ cat ~/.ssh/config
 echo "-----> Installed SSH key from GIT_SSH_KEY"    
 
 # checkout the revision that's being deployed
-git fetch -q --depth 1 git@ete-sync:ETE-REMAN/heroku-ete-sync.git -a > /dev/null
+git fetch -q --depth 1 $ETE_SYNC_GIT_URL -a > /dev/null
 echo "------> Fetch Complete"
 git checkout -q ${SOURCE_VERSION:-master} > /dev/null
-echo "-----> Fetched shallow history from $GIT_REPO_URL"
+echo "-----> Fetched shallow history from ete-sync"
 
 mv .gitmodules.heroku .gitmodules
 
 # initialize all the submodules
-git submodule set-url ./etesyncshared/ "git@ete-sync-shared:ETE-REMAN/ete-sync-shared.git"
+#git submodule set-url ./etesyncshared/ "git@ete-sync-shared:ETE-REMAN/ete-sync-shared.git"
 echo "-----> Set Submodule URL!"
 git submodule -q update --init --recursive
 echo "-----> Checked out all submodules"

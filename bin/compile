@@ -58,7 +58,7 @@ cp "$ENV_DIR/ETE_SYNC_DEPLOY_KEY" ~/.ssh/ete_sync_deploy_key
 echo >> ~/.ssh/ete_sync_deploy_key
 chmod 600 ~/.ssh/ete_sync_deploy_key
  
-echo "-----> Installing ETE SYNC Dhared Deploy Key" 
+echo "-----> Installing ETE SYNC Shared Deploy Key" 
 cp "$ENV_DIR/ETE_SYNC_SHARED_DEPLOY_KEY" ~/.ssh/ete_sync_shared_deploy_key
 echo >> ~/.ssh/ete_sync_shared_deploy_key
 chmod 600 ~/.ssh/ete_sync_shared_deploy_key
@@ -69,14 +69,11 @@ cp "$ENV_DIR/GIT_DEPLOY_HOSTS" ~/.ssh/config
 chmod 400 ~/.ssh/config
    
 cat ~/.ssh/config
-echo ""
 
-echo "-----> Fetching shallow history from $ETE_SYNC_GIT_URL"
+echo "-----> Fetching from $ETE_SYNC_GIT_URL"
 # checkout the revision that's being deployed
-#git fetch $ETE_SYNC_GIT_URL -a > /dev/null
 git fetch -a > /dev/null
-git remote
-git branch -v -a
+
 echo "-----> Checking out from ${SOURCE_VERSION:-master}"
 git checkout ${SOURCE_VERSION:-master} > /dev/null
 

@@ -76,8 +76,9 @@ echo "-----> Fetching shallow history from $ETE_SYNC_GIT_URL"
 git fetch $ETE_SYNC_GIT_URL -a > /dev/null
 git remote
 git branch -v -a
-echo "-----> Checking out from ${SOURCE_VERSION:-origin/master}"
-git checkout ${SOURCE_VERSION:-origin/master} > /dev/null
+echo "-----> Checking out from $SOURCE_VERSION"
+git checkout $SOURCE_VERSION > /dev/null
+#git checkout ${SOURCE_VERSION:-origin/master} > /dev/null
 
 echo "-----> Checking out all submodules"
 mv .gitmodules.heroku .gitmodules

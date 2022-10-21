@@ -73,7 +73,9 @@ echo ""
 
 echo "-----> Fetching shallow history from $ETE_SYNC_GIT_URL"
 # checkout the revision that's being deployed
-git fetch --depth 10 $ETE_SYNC_GIT_URL -a
+# git fetch --depth 10 $ETE_SYNC_GIT_URL -a
+git fetch $ETE_SYNC_GIT_URL
+
 echo "-----> Checking out from ${SOURCE_VERSION:-master}"
 git checkout ${SOURCE_VERSION:-master} > /dev/null
 
